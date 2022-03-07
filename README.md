@@ -1,2 +1,2 @@
 # Programacion02
-Valentina Valderrama Telematica 
+# Valentina Valderrama Telemática 
