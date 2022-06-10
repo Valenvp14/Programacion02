@@ -1,47 +1,31 @@
-class VistasDeAxiomas:
-    def mostrar(self):
-        pass
-    def escojeAxioma(self,):
+#!/usr/bin/python3
+from __future__ import print_function
+from colorclass import Color
+from terminaltables import SingleTable
+
+
+class display:
+
+    def EscojeTipoEmpleado(self):
         vResult = None
-        vResult = int(input("Tipee el nro. de axioma que quiere ver: "))
-        if vResult >= 1 and vResult <= 5:
-            return vResult
-        else:
-            return "El número introducido no se encuentra en la lista"
+        vResult = input("seleccione el tipo de empleado:")
+        return vResult
 
-class vistaAxiomasPorTerminal(VistasDeAxiomas):
-    def mostrar(self,vAxioma):
-        print("y el axioma es: ", vAxioma)
+    def EscojeEmpleado(self):
+        vResult = None
+        vResult = input("Tipee el nro. de cédula del empleado: ")
+        return vResult
 
-class vistaAxiomasHTML(VistasDeAxiomas):
-    def mostrar(self, vAxioma):
-        vArchivoHtml = open('vistaMVC.html', 'w')
+    def MuestraDatosDelEmpleado(self, vEmpleado):
+        vData = [
+            [Color('Cédula'), Color('{autocyan}Nombre{/autocyan}'), Color(
+                '{autocyan}Apellido{/autocyan}'), Color('Salario'), Color('F. Nac')],
+            [vEmpleado[0], vEmpleado[2], vEmpleado[3], vEmpleado[4], vEmpleado[5]]
+        ]
 
-        vPlantilla = """
-        <html>
-        <head>
-        <title> Telematica - Prog2 </title>
-        </head>
-        <body> 
-        <h1>Modelo-Vista-Controlador (MVC)</h1>
-        <h2>Vista html</h2>
-        <table border="1">
-        <tbody>
-        <tr>
-        <td>y el Axioma es: </td>
-        </tr>
-        <tr>
-        <td>        
-        """
-        vPlantilla += vAxioma
-        vPlantilla += """
-        </td>
-        </tr>
-        </tbody>
-        </table>
-        </body>
-        </html>
-        """
+        vResult = SingleTable(vData, ' '+' '.join(vEmpleado[2:4])+' ')
+        vResult.inner_heading_row_border = False
+        vResult.inner_row_border = True
 
-        vArchivoHtml.write(vPlantilla)
-        vArchivoHtml.close()
+        vResult.justify_columns = {0: 'center', 1: 'center', 2: 'center'}
+        print(vResult.table)
